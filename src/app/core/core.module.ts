@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FooterComponent } from './footer/footer.component';
-import { HomeComponent } from '../trip/home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { TripModule } from '../trip/trip.module';
 import { SharedModule } from '../shared/shared.module';
+import { HomeComponent } from '../trip/home/home.component';
 
 
 
@@ -15,17 +14,18 @@ import { SharedModule } from '../shared/shared.module';
     PageNotFoundComponent,
     FooterComponent,
     HeaderComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule,
-    TripModule,
-    SharedModule
   ],
   exports: [
     PageNotFoundComponent,
     FooterComponent,
     HeaderComponent,
+    HomeComponent
   ]
 })
 export class CoreModule { }

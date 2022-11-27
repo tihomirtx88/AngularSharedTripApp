@@ -21,7 +21,7 @@ const routes: Routes = [
     canActivate: [AuthActivate],
     data: {
         title: 'Logout',
-        loginRequired: true,
+        loginRequired: false,
       },
   },
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
     canActivate: [AuthActivate],
     data: {
         title: 'Porfile',
-        loginRequired: true,
+        loginRequired: false,
       },
   },
 ];

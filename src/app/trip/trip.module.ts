@@ -7,7 +7,7 @@ import { CreateTripComponent } from './create/create-trip.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { TripRoutingModule } from './trip-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { HomeComponent } from './home/home.component';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -18,12 +18,12 @@ import { HomeComponent } from './home/home.component';
     TripDetailsComponent,
     CreateTripComponent,
     CatalogComponent,
-    HomeComponent
   ],
   imports: [
     CommonModule,
-    TripRoutingModule,
     SharedModule,
+    CoreModule,
+    TripRoutingModule
   ],
   exports: [
     MainComponent,
@@ -31,7 +31,6 @@ import { HomeComponent } from './home/home.component';
     TripDetailsComponent,
     CreateTripComponent,
     CatalogComponent,
-    HomeComponent
   ]
 })
 export class TripModule { }

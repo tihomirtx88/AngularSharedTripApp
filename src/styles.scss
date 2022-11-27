@@ -1,13 +1,10 @@
-@import url('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
-
 body {
   position: relative;
 }
 
 body::before {
   content: "";
-  background: linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.5)), url('https://sc.6tupian.com/wp-content/uploads/2021/02/1613417565-f9f677ddb0fab5f.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.5)), url('https://evpoint.bg/data/ufiles/images/services/coverimage/big/mitsubishi-elektromobili.jpg');
   background-size: cover;
   background-position: center;
   position: absolute;

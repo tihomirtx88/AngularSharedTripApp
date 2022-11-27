@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './trip/home/home.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { CreateTripComponent } from './trip/create/create-trip.component';
+import { HomeComponent } from './trip/home/home.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,11 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: '/not-found'
-  }
+  },
+  // {
+  //   path: 'create',
+  //   component: CreateTripComponent
+  // },
 ];
 
 @NgModule({

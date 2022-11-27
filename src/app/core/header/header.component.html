@@ -16,15 +16,15 @@
       <ul class="navbar-nav ml-auto">
         <!-- Guest users and Logged users -->
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/trip/catalog">Shared Trips</a>
+          <a class="nav-link" routerLink="/catalog">Shared Trips</a>
         </li>
         <!-- Logged users -->
         <ng-template #loggedInTemplate>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/trip/create">Offer Trip</a>
+            <a class="nav-link" routerLink="/create">Offer Trip</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/auth/profile">Profile</a>

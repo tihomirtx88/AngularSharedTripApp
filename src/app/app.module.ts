@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,12 +15,12 @@ import { TripModule } from './trip/trip.module';
   ],
   imports: [
     AuthModule,
-    BrowserModule,
-    AppRoutingModule,
     TripModule,
+    AppRoutingModule,
+    BrowserModule,
     SharedModule,
     CoreModule,
-    TripModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

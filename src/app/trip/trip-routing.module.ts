@@ -7,7 +7,7 @@ import { TripDetailsComponent } from './details/trip-details.component';
 
 const routes: Routes = [
   {
-    path: 'trip/catalog',
+    path: 'catalog',
     component: CatalogComponent,
     canActivate: [AuthActivate],
     data: {
@@ -16,16 +16,16 @@ const routes: Routes = [
     },
   },
   {
-    path: 'trip/create',
+    path: 'create',
     component: CreateTripComponent,
     canActivate: [AuthActivate],
     data: {
         title: 'Create Trip Page',
-        loginRequired: true,
+        loginRequired: false,
       },
   },
   {
-    path: 'trip/details/:id',
+    path: 'catalog/details/:id',
     component: TripDetailsComponent,
     canActivate: [AuthActivate],
     data: {
