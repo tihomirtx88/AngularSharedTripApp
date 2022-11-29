@@ -2,21 +2,40 @@
     <div class="container login-page">
         <h1>Login</h1>
         <div class="login">
-            <form action="" method="">
+            <form #form="ngForm" (ngSubmit)="loginHandler(form)">
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="text" class="form-control" id="email" placeholder="Enter email" name=""
-                        value="" autocomplete="on">
+                    <input ngModel #emailInput="ngModel" required email type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                 </div>
+                <!-- {{emailInput.errors | json}} -->
+
+                <ng-container *ngIf="emailInput.touched">
+                    <div class="error" *ngIf="emailInput.errors?.['required']">
+                       <p>Email is required!</p>                       
+                    </div>
+                    <div class="error" *ngIf="emailInput.errors?.['email']">
+                        <p>Email is not valid!</p>                       
+                     </div>
+                </ng-container>
+                
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" name=""
-                        value="" autocomplete="on">
+                    <input ngModel #passwordInput="ngModel" [minlength]="6" required type="password" class="form-control" id="password" placeholder="Password" name="password">
                 </div>
+
+                <ng-container *ngIf="passwordInput.touched">
+                    <div class="error" *ngIf="passwordInput.errors?.['required']">
+                       <p>Password is required!</p>                       
+                    </div>
+                    <div class="error" *ngIf="passwordInput.errors?.['minlength']">
+                        <p>Password must be at least 6 characters!</p>                       
+                     </div>
+                </ng-container>
+
                 <div class="form-group">
-                    <p>Not registered yet? <a href="">Register Now!</a></p>
+                    <p>Not registered yet? <a routerLink="/register">Register Now!</a></p>
                 </div>
-                <button type="submit" class="btn btn-primary" (click)="loginHandler()">Submit</button>
+                <button class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>

@@ -1,35 +1,70 @@
 <section class="py-5" id="register-page">
-    <div class="container register-page">
-        <h1>Register</h1>
-        <div class="register">
-            <form action="" method="">
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="text" class="form-control" id="email" placeholder="Enter email" name=""
-                        value="" autocomplete="on">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" name=""
-                        value="" autocomplete="on">
-                </div>
-                <div class="form-group">
-                    <label for="rePassword">Re-Password</label>
-                    <input type="password" class="form-control" id="rePassword" placeholder="Re-Password"
-                        name="" value="" autocomplete="on">
-                </div>
-                <label>Gender</label>
-                <div class="gender">
-                    <input type="radio" id="female" name="" value="" autocomplete="on">
-                    <label for="female">Female</label>
-                    <input type="radio" id="male" name="" value="" checked autocomplete="on">
-                    <label for="male">Male</label>
-                </div>
-                <div class="form-group">
-                    <p>Already have account? <a href="">Login Now!</a></p>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+  <div class="container register-page">
+    <h1>Register</h1>
+    <div class="register">
+      <form [formGroup]="form" (ngSubmit)="registerHandler()">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            placeholder="Enter email"
+            formControlName="email"
+          />
         </div>
+
+        <ng-container formGroupName="pass">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+              formControlName="password"
+            />
+          </div>
+
+           <ng-container *ngIf="form.get('pass')?.get('password')?.touched">
+              <div class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['required']">
+                <p>Password is required!</p>                       
+             </div>
+             <div class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['minlength']">
+                <p>Password must be at least 6 characters!</p>                       
+             </div>
+           </ng-container>
+
+          <div class="form-group">
+            <label for="rePassword">Re-Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="rePassword"
+              placeholder="Re-Password"
+              formControlName="rePassword"
+            />
+          </div>
+          <div class="error" 
+          *ngIf="form.get('pass')?.errors?.['matchPasswordGroupValidator']
+          && form.get('pass')?.get('rePassword')?.touched">
+            <p>Repeat Password does not match password!</p>                       
+         </div>
+        </ng-container>
+
+        <label>Gender</label>
+        <div class="gender">
+            <select name="gender" id="gender" formControlName="ext">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+          <p>Already have account? <a routerLink="/login">Login Now!</a></p>
+        </div>
+        <button class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+      </form>
     </div>
+  </div>
 </section>

@@ -1,18 +1,36 @@
-body {
-  position: relative;
+html{
+  height: 100%;
 }
 
-body::before {
-  content: "";
-  background: linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.5)), url('https://evpoint.bg/data/ufiles/images/services/coverimage/big/mitsubishi-elektromobili.jpg');
+body {
+  height: 100%;
+  color: black;
+  background: linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.5)), url("https://www.mitsubishicars.com/content/dam/mitsubishi-motors-us/images/siteimages/seo-images/up-to-speed/Mitsubishi-Lancer-Hero-fb.jpg");
   background-size: cover;
   background-position: center;
-  position: absolute;
-  top: -25px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
 }
+app-root{
+  height: 100%;
+  display: block;
+}
+
+app-root >router-outlet + *{
+  min-height: calc(100% - 64px);
+  display: block;
+}
+
+// body::before {
+//   content: "";
+//   background: linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.5)), url("https://www.mitsubishicars.com/content/dam/mitsubishi-motors-us/images/siteimages/seo-images/up-to-speed/Mitsubishi-Lancer-Hero-fb.jpg");
+//   background-size: cover;
+//   background-position: center;
+//   position: absolute;
+//   top: -25px;
+//   right: 0px;
+//   bottom: 0px;
+//   left: 0px;
+//   // z-index: 999;
+// }
 
 main {
   position: relative;

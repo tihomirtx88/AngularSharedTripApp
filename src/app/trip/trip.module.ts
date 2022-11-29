@@ -8,6 +8,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { TripRoutingModule } from './trip-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -23,6 +24,7 @@ import { CoreModule } from '../core/core.module';
     CommonModule,
     SharedModule,
     CoreModule,
+    FormsModule,
     TripRoutingModule
   ],
   exports: [
