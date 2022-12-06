@@ -3,6 +3,6 @@ export interface IUser {
     email: string;
     hashedPassword: string;
     gender: string;
-    username: string;
     trips: string[];
+    accessToken: string;
 }

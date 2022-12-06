@@ -2,7 +2,6 @@ import { IUser } from "./user";
 
 
 export interface ITrip {
-    likes: string[];
     _id: string;
     start: string;
     end: string;

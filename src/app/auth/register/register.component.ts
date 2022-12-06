@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { matchPasswordGroupValidator } from 'src/app/shared/validators/match-passwords-validator';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   form = this.formBuild.group({
     email: ['', [Validators.required, Validators.email]],
@@ -20,13 +22,17 @@ export class RegisterComponent implements OnInit {
     gender: ['', [Validators.required]]
   });
 
-  constructor(private formBuild: FormBuilder) { }
+  constructor(private formBuild: FormBuilder, private authService: AuthService, private router: Router) { }
 
   registerHandler(){
-    
-  }
-
-  ngOnInit(): void {
+     if(this.form.invalid){return;}
+     const { email, pass: {password, rePassword,} = {}, gender } = this.form.value;
+     this.authService.register(email!, password!, rePassword!, gender!)
+     .subscribe(user => {
+        this.authService.user = user;
+        // this.router.navigate(['/login']);
+        this.router.navigate(['/']);
+     });
   }
 
 }

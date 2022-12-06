@@ -14,6 +14,12 @@
           />
         </div>
 
+        <ng-container *ngIf="form.get('email')?.touched">
+            <div class="error" *ngIf="form.get('email')?.errors?.['required']">
+               <p>Email is required!</p>                       
+            </div>
+        </ng-container>
+
         <ng-container formGroupName="pass">
           <div class="form-group">
             <label for="password">Password</label>
@@ -45,6 +51,7 @@
               formControlName="rePassword"
             />
           </div>
+
           <div class="error" 
           *ngIf="form.get('pass')?.errors?.['matchPasswordGroupValidator']
           && form.get('pass')?.get('rePassword')?.touched">
@@ -54,12 +61,18 @@
 
         <label>Gender</label>
         <div class="gender">
-            <select name="gender" id="gender" formControlName="ext">
+            <select name="gender" id="gender" formControlName="gender">
                 <option value="female">Female</option>
                 <option value="male">Male</option>
             </select>
         </div>
-        
+
+        <ng-container *ngIf="form.get('gender')?.touched">
+            <div class="error" *ngIf="form.get('gender')?.errors?.['required']">
+               <p>Gender is required!</p>                       
+            </div>
+        </ng-container>
+
         <div class="form-group">
           <p>Already have account? <a routerLink="/login">Login Now!</a></p>
         </div>

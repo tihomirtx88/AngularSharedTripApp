@@ -15,15 +15,21 @@ export class LoginComponent implements OnInit {
   constructor(private activateRoute: ActivatedRoute, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+    
   }
 
   loginHandler(form: NgForm): void {
-    if (form.invalid) {
-      return;
-    }
-    this.authService.user = {
-      email: 'tihomir@abv.bg'
-    } as any;
+   
+    if(form.invalid){return;}
+    const { email, password } = form.value;
+    this.authService.login(email!, password!)
+    .subscribe(user => {
+       this.authService.user = user;
+       // this.router.navigate(['/login']);
+       localStorage.setItem("accessToken", user.accessToken);
+       localStorage.setItem("user", JSON.stringify(user));
+       this.router.navigate(['/']);
+    });
 
     const returnUrl = this.activateRoute.snapshot.queryParams['returnUrl'] || '/';
 

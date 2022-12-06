@@ -117,7 +117,7 @@
                 </div>
                 <div class="form-group offer-input">
 
-                    <input ngModel required minlength="4" #seatsInput="ngModel" min="0" max="4"
+                    <input ngModel required [min]="1" [max]="4" #seatsInput="ngModel"
                     type="number" 
                     class="form-control-2" 
                     id="seats" 
@@ -128,13 +128,16 @@
                         <div class="error" *ngIf="seatsInput.errors?.['required']">
                            <p>Seats field is required!</p>                       
                         </div>
-                        <div class="error" *ngIf="seatsInput.errors?.['minlength']">
-                            <p>Seats field must be between 1 and 4  characters long</p>                       
+                        <div class="error" *ngIf="seatsInput.errors?.['min']">
+                            <p>Seats field must be at least 1</p>                       
+                         </div>
+                         <div class="error" *ngIf="seatsInput.errors?.['max']">
+                            <p>Seats field must be less then 5</p>                       
                          </div>
                     </ng-container>
 
-                    <input ngModel required minlength="4" #priceInput="ngModel" min="1" max="50"
-                    type="text" 
+                    <input ngModel required [min]="1" [max]="50" #priceInput="ngModel" min="1" max="50"
+                    type="number" 
                     class="form-control-2" 
                     id="price" 
                     placeholder="25" 
@@ -144,8 +147,11 @@
                         <div class="error" *ngIf="priceInput.errors?.['required']">
                            <p>Price field is required!</p>                       
                         </div>
-                        <div class="error" *ngIf="seatsInput.errors?.['minlength']">
-                            <p>Price field must be between 1 and 50  characters long</p>                       
+                        <div class="error" *ngIf="priceInput.errors?.['min']">
+                            <p>Price field must be at least 1</p>                       
+                         </div>
+                         <div class="error" *ngIf="priceInput.errors?.['max']">
+                            <p>Price field must be less then 50</p>                       
                          </div>
                     </ng-container>
 
@@ -159,11 +165,11 @@
                     placeholder="Information about the trip"
                     name="description"></textarea>
 
-                    <ng-container *ngIf="priceInput.touched">
-                        <div class="error" *ngIf="priceInput.errors?.['required']">
+                    <ng-container *ngIf="descriptionInput.touched">
+                        <div class="error" *ngIf="descriptionInput.errors?.['required']">
                            <p>Description field is required!</p>                       
                         </div>
-                        <div class="error" *ngIf="seatsInput.errors?.['minlength']">
+                        <div class="error" *ngIf="descriptionInput.errors?.['minlength']">
                             <p>Description field must be at least 10 characters long!</p>                       
                          </div>
                     </ng-container>
