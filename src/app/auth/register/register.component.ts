@@ -29,8 +29,6 @@ export class RegisterComponent {
      const { email, pass: {password, rePassword,} = {}, gender } = this.form.value;
      this.authService.register(email!, password!, rePassword!, gender!)
      .subscribe(user => {
-        this.authService.user = user;
-        // this.router.navigate(['/login']);
         this.router.navigate(['/']);
      });
   }
