@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AppValidatorDirective } from './validators/app-validator.directive';
 import { LoaderComponent } from './loader/loader.component';
+import { ShortedPipe } from './shorted.pipe';
 
 @NgModule({
   declarations: [
     
   
     AppValidatorDirective,
-    LoaderComponent
+    LoaderComponent,
+    ShortedPipe
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { LoaderComponent } from './loader/loader.component';
   ],
   exports: [
     AppValidatorDirective,
-    LoaderComponent
+    LoaderComponent,
+    ShortedPipe
   ]
 })
 export class SharedModule { }

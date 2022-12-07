@@ -11,18 +11,18 @@
           <a class="nav-link" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/catalog">Shared Trips</a>
+          <a class="nav-link" routerLink="/trips/catalog">Shared Trips</a>
         </li>
         <!-- Logged users -->
         <ng-template #loggedInTemplate>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/create">Offer Trip</a>
+            <a class="nav-link" routerLink="/trips/create">Offer Trip</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/profile">Profile</a>
+            <a class="nav-link" routerLink="/auth/profile">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/logout"
+            <a class="nav-link" routerLink="/auth/logout"
               >Logout as [ test@abv.bg ]</a
             >
           </li>
@@ -31,10 +31,10 @@
         <!-- Guest users -->
         <ng-template #loggedOutTemplate>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Login</a>
+            <a class="nav-link" routerLink="/auth/login">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/register">Register</a>
+            <a class="nav-link" routerLink="/auth/register">Register</a>
           </li>
         </ng-template>
 

@@ -34,7 +34,7 @@ export class AuthService implements OnDestroy{
 
   login(email: string, password: string) {
     return this.http.post<IUser>('/users/login', { email, password })
-    .pipe(tap(user => this.user$$.next(user)));
+    .pipe(tap(user => this.user$$.next(user))); 
   }
 
   getProfile() {
