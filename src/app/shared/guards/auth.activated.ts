@@ -19,9 +19,11 @@ export class AuthActivate implements CanActivate {
               //take data
               if (loginRequired === undefined || !!user === loginRequired) {return true;}
               const returnUrl = route.url.map(u => u.path).join('/');
+              console.log(user);
+              
               return !!user ?
-               this.router.createUrlTree(['/data/trips'], { queryParams: { returnUrl } })
-               : this.router.createUrlTree(['/users/login'], { queryParams: { returnUrl } })
+               this.router.createUrlTree(['/'], { queryParams: { returnUrl } })
+               : this.router.createUrlTree(['/'], { queryParams: { returnUrl } })
             })
          );       
     }
