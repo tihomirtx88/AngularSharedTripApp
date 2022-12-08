@@ -3,6 +3,7 @@ import { AuthActivate } from '../shared/guards/auth.activated';
 import { CatalogComponent } from './catalog/catalog.component';
 import { CreateTripComponent } from './create/create-trip.component';
 import { TripDetailsComponent } from './details/trip-details.component';
+import { EditComponent } from './edit/edit.component';
 
 
 const routes: Routes = [
@@ -25,8 +26,17 @@ const routes: Routes = [
     //   },
   },
   {
-    path: 'catalog/details/:id',
+    path: 'details/:tripId',
     component: TripDetailsComponent,
+    // canActivate: [AuthActivate],
+    // data: {
+    //     title: 'Trip Details Page',
+    //     loginRequired: true,
+    //   },
+  },
+  {
+    path: 'details/:tripId/edit',
+    component: EditComponent,
     // canActivate: [AuthActivate],
     // data: {
     //     title: 'Trip Details Page',

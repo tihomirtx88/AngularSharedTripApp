@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
+import { TripsService } from '../trips.service';
 
 @Component({
   selector: 'app-create-trip',
@@ -8,12 +11,17 @@ import { NgForm } from '@angular/forms';
 })
 export class CreateTripComponent  {
 
-  constructor() { }
+  constructor(private router: Router, private tripsService: TripsService,private authService: AuthService) { }
 
   newTripHandler(form: NgForm): void{
     if(form.invalid){return;}
-    console.log(form.value);
+    const {start, end, date, time, carImg, carBrand, price, seats, description} = form.value;
     
+    this.tripsService.createTrip(start, end, date, time, carImg, carBrand, price, seats, description)
+       .subscribe( (response) => {
+          console.log(response)
+          this.router.navigate(['/catalog']);
+       });
   }
 
 }
