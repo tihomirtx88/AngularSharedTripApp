@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, of, pluck, tap } from 'rxjs';
 import { ITrip } from 'src/app/interfaces/trip';
 import { TripsService } from '../trips.service';
 
@@ -26,7 +25,6 @@ export class TripDetailsComponent implements OnInit {
     const tripId = this.activatedRoute.snapshot.paramMap.get("tripId");
     console.log(tripId);
     console.log(typeof(tripId));
-    
     this.tripService.getTrip(tripId)
   }
 }
