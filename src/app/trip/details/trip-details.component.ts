@@ -9,6 +9,9 @@ import { TripsService } from '../trips.service';
   styleUrls: ['./trip-details.component.scss'],
 })
 export class TripDetailsComponent implements OnInit {
+
+  currentTrip: ITrip | null = null;
+  errorFetchingData = false;
   
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -16,15 +19,21 @@ export class TripDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.tripId = this.activatedRoute.snapshot.paramMap.get("tripId");
-    // this.currentTrip = this.tripService.getTrip(this.tripId); 
-    this.loadTrip();
+     this.loadTrip();
   }
 
   loadTrip(){
     const tripId = this.activatedRoute.snapshot.paramMap.get("tripId");
     console.log(tripId);
     console.log(typeof(tripId));
-    this.tripService.getTrip(tripId)
+    this.tripService.getTrip(tripId!).subscribe({
+        next: (value) => {
+           this.currentTrip = value;
+        },
+        error: (err) => {
+          this.errorFetchingData = true;
+          console.log(err);
+        }
+    });
   }
 }

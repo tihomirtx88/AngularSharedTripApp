@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
 import { ITrip } from '../interfaces/trip';
 import { IUser } from '../interfaces/user';
 
@@ -19,9 +18,8 @@ export class TripsService {
      return this.http.get<ITrip[]>(url);
   }
 
-  getTrip(tripId: string):Observable<any>{
-    const url = `http://localhost:3030/data/${tripId}`
-    return this.http.get<ITrip>(url);
+  getTrip(tripId: string){
+    return this.http.get<ITrip>(`http://localhost:3030/data/trips/${tripId}`);
   }
 
   createTrip(start: string, end: string, date: string, time: string, carImg: string, carBrand: string, price: number, seats: number, description: string){
