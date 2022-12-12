@@ -11,7 +11,7 @@ export class AuthService implements OnDestroy{
   private user$$ = new BehaviorSubject<undefined | null | IUser>(undefined);
   user$ = this.user$$
   .asObservable()
-  .pipe(filter((val): val is IUser | null => val !== undefined));
+  .pipe();
 
   user: IUser | null = null;
 
@@ -23,8 +23,16 @@ export class AuthService implements OnDestroy{
 
   constructor(private http: HttpClient) {
     this.subscription = this.user$.subscribe(user => {
-      this.user = user
+      if (user) {
+        this.user = user
+      }
+      
     });
+  }
+
+  setUser(user: IUser | null){
+     this.user = user;
+     this.user$$.next(user);
   }
   
   register( email: string, password: string, rePassword: string, gender: string ) {
@@ -33,7 +41,7 @@ export class AuthService implements OnDestroy{
   }
 
   login(email: string, password: string) {
-    return this.http.post<IUser>('/users/login', { email, password })
+    return this.http.post<any>('/users/login', { email, password })
     .pipe(tap(user => this.user$$.next(user))); 
   }
 

@@ -11,6 +11,6 @@ export class LogoutComponent {
   constructor(private router: Router, private authService: AuthService) {
     localStorage.clear();
     this.authService.user = null;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }

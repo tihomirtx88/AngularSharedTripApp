@@ -23,10 +23,8 @@ export class LoginComponent implements OnInit {
     if(form.invalid){return;}
     const { email, password } = form.value;
     this.authService.login(email!, password!)
-    .subscribe(user => {
-       this.authService.user = user;
-       console.log(user);
-       
+    .subscribe(user => {   
+      this.authService.user = user;
        localStorage.setItem("accessToken", user.accessToken);
        localStorage.setItem("user", JSON.stringify(user));
        this.router.navigate(['/']);

@@ -9,38 +9,38 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    // canActivate: [AuthActivate],
-    // data: {
-    //   title: 'Login Page',
-    //   loginRequired: false,
-    // },
+    canActivate: [AuthActivate],
+    data: {
+      title: 'Login Page',
+      loginRequired: false,
+    },
   },
   {
     path: 'logout',
     component: LogoutComponent,
-    // canActivate: [AuthActivate],
-    // data: {
-    //     title: 'Logout',
-    //     loginRequired: true,
-    //   },
+    canActivate: [AuthActivate],
+    data: {
+        title: 'Logout',
+        loginRequired: true,
+      },
   },
   {
     path: 'register',
     component: RegisterComponent,
-    // canActivate: [AuthActivate],
-    // data: {
-    //     title: 'Register Page',
-    //     loginRequired: false,
-    //   },
+    canActivate: [AuthActivate],
+    data: {
+        title: 'Register Page',
+        loginRequired: false,
+      },
   },
   {
     path: 'profile',
     component: ProfileComponent,
-    // canActivate: [AuthActivate],
-    // data: {
-    //     title: 'Porfile',
-    //     loginRequired: true,
-    //   },
+    canActivate: [AuthActivate],
+    data: {
+        title: 'Porfile',
+        loginRequired: true,
+      },
   },
 ];
 

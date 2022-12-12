@@ -8,12 +8,10 @@ import { appInterceptorProvider } from './app.interceptor';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 // import { TripModule } from './trip/trip.module';
-import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent,
   ],
   imports: [
     // AuthModule,

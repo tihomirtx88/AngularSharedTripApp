@@ -17,13 +17,14 @@ export class AuthActivate implements CanActivate {
             map(user => {
               const loginRequired = route.data['loginRequired'];
               //take data
-              if (loginRequired === undefined || !!user === loginRequired) {return true;}
+              if (!loginRequired || !!user === loginRequired) {return true;}
               const returnUrl = route.url.map(u => u.path).join('/');
               return !!user ?
-               this.router.createUrlTree(['/'], { queryParams: { returnUrl } })
-               : this.router.createUrlTree(['/'], { queryParams: { returnUrl } })
+               this.router.createUrlTree(['/login'], { queryParams: { returnUrl } })
+               : this.router.createUrlTree(['/catalog'], { queryParams: { returnUrl } })
             })
          );       
+        //  look later
     }
 
 }

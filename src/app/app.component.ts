@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivationStart, Router } from '@angular/router';
 import { filter, map, } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,12 @@ import { filter, map, } from 'rxjs';
 export class AppComponent {
   title = 'shared-trip';
 
-  constructor(private router: Router, private pageTitle: Title){
+  constructor(private router: Router, private pageTitle: Title, private authService: AuthService){
+    if (localStorage.getItem('user')) {
+      // i must check is it user token valid or not 
+      this.authService.setUser(JSON.parse(localStorage.getItem("user") || ''));
+    }
+    
     this.router.events.pipe(
       filter((e): e is ActivationStart => e instanceof ActivationStart),
       map( e => e.snapshot.data?.['title']),

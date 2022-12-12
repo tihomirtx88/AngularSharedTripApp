@@ -7,9 +7,7 @@
             exploration begin!</p>
     </header>
     <div  class="row text-center">
-        <!-- If there are shared trips in the database display each of them -->
 
-        <!-- trip #1 -->
         <div *ngFor="let trip of tripList" class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
                 <img class="card-img-top"
@@ -24,13 +22,11 @@
                     <h5 class="mt-4"><i class="fas fa-hand-holding-usd"></i> Price: <span>{{trip.price}}</span> BGN</h5>
                 </div>
                 <div class="card-footer">
-                    <a attr.href="/trips/details/{{ trip._id }}" class="btn btn-primary">Details</a>
+                    <a routerLink="/trips/details/{{ trip._id }}" class="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>
       
-
-        <!-- If there are no shared trips in the database -->
         <div *ngIf="!tripList" class="no-trips">
             <img src="https://www.stagweb.co.uk/img/activities/big/sexyhitchhiker1.jpg" />
             <p class="lead">Hitchhiker time...</p>

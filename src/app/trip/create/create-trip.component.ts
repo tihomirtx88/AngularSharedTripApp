@@ -19,8 +19,7 @@ export class CreateTripComponent  {
     
     this.tripsService.createTrip(start, end, date, time, carImg, carBrand, price, seats, description)
        .subscribe( (response) => {
-          console.log(response)
-          this.router.navigate(['/catalog']);
+          this.router.navigate(['/trips/catalog']);
        });
   }
 

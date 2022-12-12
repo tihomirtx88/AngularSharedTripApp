@@ -22,6 +22,10 @@ export class TripsService {
     return this.http.get<ITrip>(`http://localhost:3030/data/trips/${tripId}`);
   }
 
+  getBudies(tripId: string){
+    return this.http.get<IUser[]>(`http://localhost:3030/data/trips/buddies/${tripId}`)
+ }
+
   createTrip(start: string, end: string, date: string, time: string, carImg: string, carBrand: string, price: number, seats: number, description: string){
     const token = localStorage.getItem("accessToken")
     const stringToken = token ? token : ""
@@ -30,6 +34,17 @@ export class TripsService {
         'Content-Type': 'application/json',
         'X-Authorization': stringToken
       }
+    });
+  }
+
+  joinToTrip(tripId: string, userId: string){
+    const token = localStorage.getItem("accessToken")
+    const stringToken = token ? token : ""
+    return this.http.post<ITrip>(`http://localhost:3030/data/join/${tripId}`, {tripId, userId} , {
+       headers: {
+         'Content-Type': 'application/json',
+         'X-Authorization': stringToken
+       }
     });
   }
 
