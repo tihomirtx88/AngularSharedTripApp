@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -9,9 +10,33 @@ import { TripsService } from '../trips.service';
   selector: 'app-trip-details',
   templateUrl: './trip-details.component.html',
   styleUrls: ['./trip-details.component.scss'],
+  animations: [
+    trigger('popOverState', [
+      state('show', style({
+        opacity: 1
+      })),
+      state('hide', style({
+        opacity: 0
+      })),
+      transition('show => hide', animate('600ms ease-out')),
+      transition('hide => show', animate('1000ms ease-out'))
+    ]),
+    trigger('popDescriptionState', [
+      state('show', style({
+        opacity: 1
+      })),
+      state('hide', style({
+        opacity: 0
+      })),
+      transition('show => hide', animate('600ms ease-out')),
+      transition('hide => show', animate('1000ms ease-out'))
+    ])
+  ]
 })
 export class TripDetailsComponent implements OnInit {
 
+  showStartEnd = false;
+  showDescriptionInfo = false;
   currentTrip: ITrip | null = null;
   currentTripId!: string;
   currentTripBudies: IUser[] | null= null;
@@ -34,6 +59,22 @@ export class TripDetailsComponent implements OnInit {
   ngOnInit(): void {
      this.loadTrip();
      this.loadBudies();
+  }
+
+  get stateName(){
+    return this.showStartEnd ? 'show' : 'hide';
+  }
+
+  get stateDescription(){
+    return this.showDescriptionInfo ? 'show' : 'hide';
+  }
+
+  toggleStartEnd(){
+    this.showStartEnd = !this.showStartEnd;
+  }
+
+  toggleDescriptionHandler(){
+    this.showDescriptionInfo = !this.showDescriptionInfo;
   }
 
   loadTrip(){

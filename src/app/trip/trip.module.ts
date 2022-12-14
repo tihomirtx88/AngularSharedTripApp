@@ -13,6 +13,7 @@ import { NgxPaginationModule } from "ngx-pagination";
 
 
 
+
 @NgModule({
   declarations: [
     MainComponent,
@@ -29,7 +30,7 @@ import { NgxPaginationModule } from "ngx-pagination";
     TripRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   exports: [
     MainComponent,

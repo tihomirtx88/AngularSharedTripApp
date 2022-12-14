@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { appInterceptorProvider } from './app.interceptor';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     CoreModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule
   ],
   providers: [appInterceptorProvider],
   bootstrap: [AppComponent]

@@ -2,11 +2,12 @@
 <section class="py-5 details" id="trip-details-page">
     <div class="container">
         <div class="destination">
-            <div>
+            <button class="button-start-end" (click)="toggleStartEnd()">See more informaion</button>
+            <div [@popOverState]="stateName">
                 <span class="icon"><i class="fas fa-map-marked-alt"></i></span>
                 <h5> from <span>{{currentTrip?.start}}</span> to <span>{{currentTrip?.end}}</span> </h5>
             </div>
-            <div>
+            <div [@popOverState]="stateName">
                 <span class="icon"><i class="fas fa-calendar-alt"></i></span>
                 <h5> <span>{{currentTrip?.date}}</span> at <span>{{currentTrip?.time}}</span> </h5>
             </div>
@@ -36,8 +37,8 @@
                     alt="car-image">
             </div>
             <div class="trip-desc">
-                <h5>Information about the trip</h5>
-                <textarea class="lead"
+                <button (click)="toggleDescriptionHandler()" class="button-information" >Information about the trip</button>
+                <textarea [@popDescriptionState]="stateDescription" class="lead"
                     disabled>{{currentTrip?.description}}</textarea>
                 <h5>Price: <span class="lead">{{currentTrip?.price}}</span> BGN</h5>
 
