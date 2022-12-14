@@ -11,14 +11,18 @@ import { TripsService } from '../trips.service';
 export class CatalogComponent implements OnInit {
   tripList: ITrip[] | null = null;
   errorFetchingData = false;
-  maxCount = 6;
+  totalLength!: number; 
+  page: number = 1;
 
   constructor(private tripService: TripsService, private router: Router) {}
 
+
+
   ngOnInit(): void {
-    this.tripService.getAllTrips(this.maxCount).subscribe({
+    this.tripService.getAllTrips().subscribe({
       next: (value) => {
         this.tripList = value;
+        this.totalLength = value.length;
         
       },
       error: (err) => {

@@ -46,14 +46,21 @@ export class AuthService implements OnDestroy{
   }
 
   getProfile() {
-    return this.http.get<IUser>('/data/trips/profile')
+    const token = localStorage.getItem("accessToken")
+    const stringToken = token ? token : ""
+    return this.http.get<IUser>('http://localhost:3030/data/trips/profile', {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': stringToken
+      }
+    })
     .pipe(
       tap(user => this.user$$.next(user)),
       catchError((err) => {
         this.user$$.next(null)
-        return of(err)//или [err] също става
+        return of(err)
       })
-     );
+     )
   }
 
   logout(){

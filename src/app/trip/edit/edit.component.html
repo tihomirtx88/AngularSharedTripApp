@@ -2,44 +2,104 @@
     <div class="container edit">
         <h1>Edit trip</h1>
         <div>
-            <form action="" method="">
+            <form [formGroup]="editForm" (ngSubmit)="EditFormHandler()">
                 <div class="edit-label">
                     <label for="startPoint"> <i class="fas fa-map-marker-alt"></i> Starting Point</label>
                     <label for="endPoint"> <i class="fas fa-map-marker-alt"></i> End Point</label>
                 </div>
                 <div class="form-group edit-input">
-                    <input type="text" class="form-control-2" id="startPoint" name="" value="">
-                    <input type="text" class="form-control-2" id="endPoint" name="" value="">
+                    <input 
+                    type="text" 
+                    class="form-control-2" 
+                    id="startPoint" 
+                    formControlName="start">  
+                    
+                    <ng-container *ngIf="editForm.get('start')?.touched">
+                        <div class="error" *ngIf="editForm.get('start')?.errors?.['required']">
+                           <p>Start point is required!</p>                       
+                        </div>
+                        <div class="error" *ngIf="editForm.get('start')?.errors?.['minlength']">
+                            <p>Start must be at least 4 characters long!</p>                       
+                         </div>
+                    </ng-container>
+
+                    <input  
+                    type="text" 
+                    class="form-control-2" 
+                    id="endPoint" 
+                    formControlName="end"
+                   >
+
                 </div>
                 <div class="edit-label">
                     <label for="date"> <i class="far fa-calendar-alt"></i> Date</label>
                     <label for="time"> <i class="far fa-clock"></i> Time</label>
                 </div>
                 <div class="form-group edit-input">
-                    <input type="date" class="form-control-2" id="date" name="" value="">
-                    <input type="time" class="form-control-2" id="time" name="" value="">
+                    <input 
+                    type="text" 
+                    class="form-control-2" 
+                    id="date" 
+                    formControlName="date"
+                     >
+
+                    <input
+                    type="text" 
+                    class="form-control-2" 
+                    id="time" 
+                    formControlName="time"
+                    >
+
                 </div>
                 <div class="edit-label">
                     <label for="carImage">Car Image</label>
                     <label for="carBrand">Car Brand</label>
                 </div>
                 <div class="form-group edit-input">
-                    <input type="text" class="form-control-2" id="carImage" name="" value="">
-                    <input type="text" class="form-control-2" id="carBrand" name="" value="">
+                    <input  
+                    type="text" 
+                    class="form-control-2" 
+                    id="carImage" 
+                    formControlName="carImg"
+                   >
+
+                    <input 
+                    type="text" 
+                    class="form-control-2" 
+                    id="carBrand" 
+                    formControlName="carBrand"
+                    >
+
                 </div>
                 <div class="edit-label">
                     <label for="seats">Available Seats</label>
                     <label for="price">Price</label>
                 </div>
                 <div class="form-group edit-input">
-                    <input type="text" class="form-control-2" id="seats" name="" value="">
-                    <input type="text" class="form-control-2" id="price" name="" value="">
+                    <input 
+                    type="number" 
+                    class="form-control-2" 
+                    id="seats" 
+                    formControlName="seats"
+                    >
+
+                    <input 
+                    type="number" 
+                    class="form-control-2" 
+                    id="price" 
+                    formControlName="price"
+                    >
+
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control" id="description" name=""></textarea>
+                    <textarea  
+                    class="form-control" 
+                    id="description" 
+                    formControlName="description"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <button class="btn btn-primary" [disabled]="editForm.invalid">Submit</button>
             </form>
         </div>
     </div>

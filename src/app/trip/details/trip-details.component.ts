@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ITrip } from 'src/app/interfaces/trip';
 import { IUser } from 'src/app/interfaces/user';
@@ -13,6 +13,7 @@ import { TripsService } from '../trips.service';
 export class TripDetailsComponent implements OnInit {
 
   currentTrip: ITrip | null = null;
+  currentTripId!: string;
   currentTripBudies: IUser[] | null= null;
   errorFetchingData = false;
   haveCurrrentUser = false;
@@ -26,7 +27,8 @@ export class TripDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private tripService: TripsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -42,9 +44,12 @@ export class TripDetailsComponent implements OnInit {
   
     this.tripService.getTrip(tripId!).subscribe({
         next: (value) => {
-           this.currentTrip = value;       
+           
+           this.currentTrip = value; 
+           this.currentTripId = this.currentTrip._id            
            this.userId = this.authService.user?._id;
            this.tripAuthor = value.owner;
+
            if (this.userId == this.tripAuthor)  {
              this.isCreator = true;
            }
@@ -54,9 +59,9 @@ export class TripDetailsComponent implements OnInit {
            if (this.currentTrip.seats > 0) {
               this.thereIsFreeSeats = true;
            }
-           if (this.currentTrip.buddies.includes(this.authService.user!._id)) {
+           if (this.currentTrip!.buddies.includes(this.authService.user!._id)) {
             this.isAllReadyJoinInTrip = true;
-         }
+         }  
         },
         error: (err) => {
           this.errorFetchingData = true;
@@ -68,7 +73,8 @@ export class TripDetailsComponent implements OnInit {
     const tripId = this.activatedRoute.snapshot.paramMap.get("tripId");
     this.tripService.getBudies(tripId!).subscribe({
       next: (value) => {
-         this.currentTripBudies = value;     
+         this.currentTripBudies = value;
+            
       },
       error: (err) => {
         this.errorFetchingData = true;
@@ -82,9 +88,21 @@ export class TripDetailsComponent implements OnInit {
     
     this.tripService.joinToTrip(tripId!, this.userId!).subscribe({
       next: (value) => {
-         console.log(value, `from join event`);
-         
+         this.isAllReadyJoinInTrip = true;     
       }
     });
+  }
+
+  onDeleteEvent(){
+    const tripId = this.activatedRoute.snapshot.paramMap.get("tripId");
+    const confirmation = window.confirm("Are you sure you want to delete this trip?");
+
+    if (confirmation) {
+      this.tripService.deleteTrip(tripId!).subscribe({
+        next: (value) => {
+           this.router.navigate(['/'])        
+        }
+      });
+    }
   }
 }

@@ -35,7 +35,7 @@ const routes: Routes = [
       },
   },
   {
-    path: 'details/:tripId/edit',
+    path: ':tripId/edit',
     component: EditComponent,
     canActivate: [AuthActivate],
     data: {

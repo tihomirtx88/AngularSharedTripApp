@@ -8,7 +8,8 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { TripRoutingModule } from './trip-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from "ngx-pagination";
 
 
 
@@ -25,7 +26,10 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     CoreModule,
     FormsModule,
-    TripRoutingModule
+    TripRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   exports: [
     MainComponent,

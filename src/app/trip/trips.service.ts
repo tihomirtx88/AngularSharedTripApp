@@ -10,11 +10,8 @@ export class TripsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTrips(maxCount?: number){
+  getAllTrips(){
     let url = 'http://localhost:3030/data/trips?limit=6';
-    // if (maxCount) {
-    //   url += '?limit=6';
-    // }
      return this.http.get<ITrip[]>(url);
   }
 
@@ -37,6 +34,17 @@ export class TripsService {
     });
   }
 
+  update(tripId: string, start: string, end: string, date: string, time: string, carImg: string, carBrand: string, price: number, seats: number, description: string){
+    const token = localStorage.getItem("accessToken")
+    const stringToken = token ? token : ""
+    return this.http.put<ITrip>(`http://localhost:3030/data/trips/${tripId}`, {start: start, end: end, date: date, time: time, carImg: carImg, carBrand: carBrand, price: price, seats: seats, description: description}, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': stringToken
+      }
+    });
+  }
+
   joinToTrip(tripId: string, userId: string){
     const token = localStorage.getItem("accessToken")
     const stringToken = token ? token : ""
@@ -48,12 +56,14 @@ export class TripsService {
     });
   }
 
-  update(tripId: string, start: string, end: string, date: string, time: string, carImg: string, carBrand: string, price: number, seats: number, description: string){
-    return this.http.put<ITrip>('http://localhost:3030/data/trips' + tripId, {start: start, end: end, date: date, time: time, carImg: carImg, carBrand: carBrand, price: price, seats: seats, description: description});
-  }
-  // TODO INPUT
-
-  deleteTrip(id: string){
-    return this.http.delete<IUser>('http://localhost:3030/data/trips' + id);
+  deleteTrip(tripId: string){
+    const token = localStorage.getItem("accessToken")
+    const stringToken = token ? token : ""
+    return this.http.delete<ITrip>(`http://localhost:3030/data/trips/${tripId}`, {
+       headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': stringToken
+       }
+    });
   }
 }

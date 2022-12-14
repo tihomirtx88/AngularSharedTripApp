@@ -1,22 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ITrip } from 'src/app/interfaces/trip';
+import { IUser } from 'src/app/interfaces/user';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  errorFetchingData = false;
+  profileTrips: ITrip[] | null = null;
+  isMale = false;
+  isFemale = false;
+  thereIsNotAnyTrips = false;
+  currentUser: IUser | null = null;
 
-  form = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    // TODO
-  });
+  constructor(private authService: AuthService) {
+    this.currentUser = this.authService.user;
+    
+    if (this.authService.user?.gender == `male`) {
+      this.isMale = true;
+    }
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
-
-  ngOnInit(): void {
+    if (this.authService.user?.gender == `female`) {
+      this.isFemale = true;
+    }
   }
 
+  ngOnInit(): void {
+    this.authService.getProfile().subscribe({
+      next: (value) => {
+        this.profileTrips = value;
+        if (this.profileTrips?.length == 0) {
+           this.thereIsNotAnyTrips = true;
+        }
+      },
+      error: (err) => {
+        this.errorFetchingData = true;
+        console.log(err);
+      },
+    });
+  }
 }

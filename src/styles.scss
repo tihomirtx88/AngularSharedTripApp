@@ -19,18 +19,9 @@ app-root >router-outlet + *{
   display: block;
 }
 
-// body::before {
-//   content: "";
-//   background: linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.5)), url("https://www.mitsubishicars.com/content/dam/mitsubishi-motors-us/images/siteimages/seo-images/up-to-speed/Mitsubishi-Lancer-Hero-fb.jpg");
-//   background-size: cover;
-//   background-position: center;
-//   position: absolute;
-//   top: -25px;
-//   right: 0px;
-//   bottom: 0px;
-//   left: 0px;
-//   // z-index: 999;
-// }
+.pagination ul li a{
+  color: red;
+}
 
 main {
   position: relative;
@@ -253,13 +244,21 @@ input.form-control-2::placeholder, textarea.form-control::placeholder {
   color: rgb(167, 162, 162);
 }
 
-.gender {
-  box-shadow: 0px -2px 20px -1px #f4c537, inset -14px -14px 30px -13px rgb(0 0 0 / 55%);
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: .25rem;
-  padding-top: 5px;
-  margin-bottom: 15px;
+.gender-select{
+  border: none;
+  border-radius: 10px;
+  background-color: lightgrey;
+  color: blue;
+  font-style: italic;
 }
+
+// .gender {
+//   box-shadow: 0px -2px 20px -1px #f4c537, inset -14px -14px 30px -13px rgb(0 0 0 / 55%);
+//   background: rgba(0, 0, 0, 0.5);
+//   border-radius: .25rem;
+//   padding-top: 5px;
+//   margin-bottom: 15px;
+// }
 
 .no-trips {
   width: 100%;

@@ -44,8 +44,8 @@
                 <ng-container *ngIf="haveCurrrentUser">
                     <div class="actions">
                         <ng-container *ngIf="isCreator">
-                            <a href="" class="btn btn-danger">Delete this trip</a>
-                            <a href="" class="btn btn-warning">Edit this trip</a>
+                            <a (click)="onDeleteEvent()" class="btn btn-danger">Delete this trip</a>
+                            <a routerLink="/trips/{{ currentTripId }}/edit" class="btn btn-warning">Edit this trip</a>
                         </ng-container>
                         <ng-container *ngIf="!isCreator">
                              
@@ -55,11 +55,11 @@
 
                             <ng-container *ngIf="!isAllReadyJoinInTrip">
                                 <ng-container *ngIf="thereIsFreeSeats">
-                                    <button (click)="onJoinEvent()" class="btn btn-join">Join now, --  --  seats left!</button>
+                                    <button (click)="onJoinEvent()" class="btn btn-join">Join now</button>
                                 </ng-container>
                                  
                                 <ng-container *ngIf="!thereIsFreeSeats">       
-                                    <span class="btn btn-secondary">No seats available! --  --</span>
+                                    <span class="btn btn-secondary">No seats available!</span>
                                 </ng-container>
                             </ng-container>
                            
