@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { catchError, throwError } from 'rxjs';
 import { ITrip } from 'src/app/interfaces/trip';
 import { IUser } from 'src/app/interfaces/user';
 import { AuthService } from '../auth.service';
@@ -30,7 +31,13 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.getProfile().subscribe({
+    this.authService.getProfile()
+    .pipe(
+      catchError((err) => {
+        return throwError(() => new Error(err.message));
+      }),
+    )
+    .subscribe({
       next: (value) => {
         this.profileTrips = value;
         if (this.profileTrips?.length == 0) {

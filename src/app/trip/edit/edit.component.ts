@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ITrip } from 'src/app/interfaces/trip';
 import { TripsService } from '../trips.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
@@ -32,7 +33,13 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     const tripId = this.activatedRoute.snapshot.paramMap.get('tripId');
-    this.tripService.getTrip(tripId!).subscribe( (value: any) => {  
+    this.tripService.getTrip(tripId!)
+    .pipe(
+      catchError((err) => {
+        return throwError(() => new Error(err.message));
+      }),
+    )
+    .subscribe( (value: any) => {  
         this.editForm = this.formBuild.group({
           start: [value.start],
           end: new FormControl(value['end']),

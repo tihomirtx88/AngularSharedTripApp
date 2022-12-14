@@ -2,181 +2,191 @@
     <div class="container offer-trip">
         <h1>Offer trip</h1>
         <div>
-            <form #form="ngForm" (ngSubmit)="newTripHandler(form)">
-                <div class="offer-label">
-                    <label for="startPoint"> <i class="fas fa-map-marker-alt"></i> Starting Point </label>
-                    <label for="endPoint"> <i class="fas fa-map-marker-alt"></i> End Point</label>
-                </div>
-                <div class="form-group offer-input">
 
-                    <input ngModel required minlength="4" #startInput="ngModel"
-                    type="text" 
-                    class="form-control-2" 
-                    id="startPoint" 
-                    placeholder="Studentski grad"
-                    name="start" >
+            <ng-container *ngIf="errorFetchingData">
+                <div class="error">
+                    <p>Fetch is falied</p>                       
+                 </div>
+            </ng-container>
 
-                    <ng-container *ngIf="startInput.touched">
-                        <div class="error" *ngIf="startInput.errors?.['required']">
-                           <p>Start point field is required!</p>                       
-                        </div>
-                        <div class="error" *ngIf="startInput.errors?.['minlength']">
-                            <p>Start point field must be at least 4 characters</p>                       
-                         </div>
-                    </ng-container>
+            <ng-container *ngIf="!errorFetchingData">
+                <form #form="ngForm" (ngSubmit)="newTripHandler(form)">
+                    <div class="offer-label">
+                        <label for="startPoint"> <i class="fas fa-map-marker-alt"></i> Starting Point </label>
+                        <label for="endPoint"> <i class="fas fa-map-marker-alt"></i> End Point</label>
+                    </div>
+                    <div class="form-group offer-input">
+    
+                        <input ngModel required minlength="4" #startInput="ngModel"
+                        type="text" 
+                        class="form-control-2" 
+                        id="startPoint" 
+                        placeholder="Studentski grad"
+                        name="start" >
+    
+                        <ng-container *ngIf="startInput.touched">
+                            <div class="error" *ngIf="startInput.errors?.['required']">
+                               <p>Start point field is required!</p>                       
+                            </div>
+                            <div class="error" *ngIf="startInput.errors?.['minlength']">
+                                <p>Start point field must be at least 4 characters</p>                       
+                             </div>
+                        </ng-container>
+    
+                        <input ngModel required minlength="4" #endInput="ngModel" 
+                        type="text" 
+                        class="form-control-2" 
+                        id="endPoint" 
+                        placeholder="Pamporovo" 
+                        name="end">
+    
+                        <ng-container *ngIf="endInput.touched">
+                            <div class="error" *ngIf="endInput.errors?.['required']">
+                               <p>End point field is required!</p>                       
+                            </div>
+                            <div class="error" *ngIf="endInput.errors?.['minlength']">
+                                <p>End point field must be at least 4 characters</p>                       
+                             </div>
+                        </ng-container>
+    
+                    </div>
+                    <div class="offer-label">
+                        <label for="date"> <i class="far fa-calendar-alt"></i> Date</label>
+                        <label for="time"> <i class="far fa-clock"></i> Time</label>
+                    </div>
+                    <div class="form-group offer-input">
+    
+                        <input ngModel required #dateInput="ngModel" 
+                        type="text" 
+                        class="form-control-2" 
+                        id="date" 
+                        placeholder="18 May 2021" 
+                        name="date">
+    
+                        <ng-container *ngIf="dateInput.touched">
+                            <div class="error" *ngIf="endInput.errors?.['required']">
+                               <p>Date field is required!</p>                       
+                            </div>
+                        </ng-container>
+    
+                        <input ngModel required #timeInput="ngModel" 
+                        type="text" 
+                        class="form-control-2" 
+                        id="time" 
+                        placeholder="19:00 PM" 
+                        name="time">
+    
+                        <ng-container *ngIf="timeInput.touched">
+                            <div class="error" *ngIf="timeInput.errors?.['required']">
+                               <p>Time field is required!</p>                       
+                            </div>
+                        </ng-container>
+    
+                    </div>
+                    <div class="offer-label">
+                        <label for="carImage">Car Image</label>
+                        <label for="carBrand">Car Brand</label>
+                    </div>
+                    <div class="form-group offer-input">
+    
+                        <input ngModel required minlength="4" #carImgInput="ngModel"
+                        type="text" 
+                        class="form-control-2" 
+                        id="carImage" 
+                        placeholder="https://..." 
+                        name="carImg" >
+    
+                        <ng-container *ngIf="carImgInput.touched">
+                            <div class="error" *ngIf="carImgInput.errors?.['required']">
+                               <p>Car image is required!</p>                       
+                            </div>
+                        </ng-container>
+    
+                        <input ngModel required minlength="4" #carBrandInput="ngModel"
+                        type="text" 
+                        class="form-control-2" 
+                        id="carBrand" 
+                        placeholder="Audi" 
+                        name="carBrand" >
+    
+                        <ng-container *ngIf="carBrandInput.touched">
+                            <div class="error" *ngIf="carBrandInput.errors?.['required']">
+                               <p>Car brand field is required!</p>                       
+                            </div>
+                            <div class="error" *ngIf="carBrandInput.errors?.['minlength']">
+                                <p>Car brand field must be at least 4 characters</p>                       
+                             </div>
+                        </ng-container>
+    
+                    </div>
+                    <div class="offer-label">
+                        <label for="seats">Available Seats</label>
+                        <label for="price">Price</label>
+                    </div>
+                    <div class="form-group offer-input">
+    
+                        <input ngModel required [min]="1" [max]="4" #seatsInput="ngModel"
+                        type="number" 
+                        class="form-control-2" 
+                        id="seats" 
+                        placeholder="4" 
+                        name="seats">
+    
+                        <ng-container *ngIf="seatsInput.touched">
+                            <div class="error" *ngIf="seatsInput.errors?.['required']">
+                               <p>Seats field is required!</p>                       
+                            </div>
+                            <div class="error" *ngIf="seatsInput.errors?.['min']">
+                                <p>Seats field must be at least 1</p>                       
+                             </div>
+                             <div class="error" *ngIf="seatsInput.errors?.['max']">
+                                <p>Seats field must be less then 5</p>                       
+                             </div>
+                        </ng-container>
+    
+                        <input ngModel required [min]="1" [max]="50" #priceInput="ngModel" min="1" max="50"
+                        type="number" 
+                        class="form-control-2" 
+                        id="price" 
+                        placeholder="25" 
+                        name="price">
+    
+                        <ng-container *ngIf="priceInput.touched">
+                            <div class="error" *ngIf="priceInput.errors?.['required']">
+                               <p>Price field is required!</p>                       
+                            </div>
+                            <div class="error" *ngIf="priceInput.errors?.['min']">
+                                <p>Price field must be at least 1</p>                       
+                             </div>
+                             <div class="error" *ngIf="priceInput.errors?.['max']">
+                                <p>Price field must be less then 50</p>                       
+                             </div>
+                        </ng-container>
+    
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+    
+                        <textarea ngModel required minlength="10" #descriptionInput="ngModel"
+                        class="form-control" 
+                        id="description" 
+                        placeholder="Information about the trip"
+                        name="description"></textarea>
+    
+                        <ng-container *ngIf="descriptionInput.touched">
+                            <div class="error" *ngIf="descriptionInput.errors?.['required']">
+                               <p>Description field is required!</p>                       
+                            </div>
+                            <div class="error" *ngIf="descriptionInput.errors?.['minlength']">
+                                <p>Description field must be at least 10 characters long!</p>                       
+                             </div>
+                        </ng-container>
+                        
+                    </div>
+                    <button class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+                </form>
+            </ng-container>
 
-                    <input ngModel required minlength="4" #endInput="ngModel" 
-                    type="text" 
-                    class="form-control-2" 
-                    id="endPoint" 
-                    placeholder="Pamporovo" 
-                    name="end">
-
-                    <ng-container *ngIf="endInput.touched">
-                        <div class="error" *ngIf="endInput.errors?.['required']">
-                           <p>End point field is required!</p>                       
-                        </div>
-                        <div class="error" *ngIf="endInput.errors?.['minlength']">
-                            <p>End point field must be at least 4 characters</p>                       
-                         </div>
-                    </ng-container>
-
-                </div>
-                <div class="offer-label">
-                    <label for="date"> <i class="far fa-calendar-alt"></i> Date</label>
-                    <label for="time"> <i class="far fa-clock"></i> Time</label>
-                </div>
-                <div class="form-group offer-input">
-
-                    <input ngModel required #dateInput="ngModel" 
-                    type="text" 
-                    class="form-control-2" 
-                    id="date" 
-                    placeholder="18 May 2021" 
-                    name="date">
-
-                    <ng-container *ngIf="dateInput.touched">
-                        <div class="error" *ngIf="endInput.errors?.['required']">
-                           <p>Date field is required!</p>                       
-                        </div>
-                    </ng-container>
-
-                    <input ngModel required #timeInput="ngModel" 
-                    type="text" 
-                    class="form-control-2" 
-                    id="time" 
-                    placeholder="19:00 PM" 
-                    name="time">
-
-                    <ng-container *ngIf="timeInput.touched">
-                        <div class="error" *ngIf="timeInput.errors?.['required']">
-                           <p>Time field is required!</p>                       
-                        </div>
-                    </ng-container>
-
-                </div>
-                <div class="offer-label">
-                    <label for="carImage">Car Image</label>
-                    <label for="carBrand">Car Brand</label>
-                </div>
-                <div class="form-group offer-input">
-
-                    <input ngModel required minlength="4" #carImgInput="ngModel"
-                    type="text" 
-                    class="form-control-2" 
-                    id="carImage" 
-                    placeholder="https://..." 
-                    name="carImg" >
-
-                    <ng-container *ngIf="carImgInput.touched">
-                        <div class="error" *ngIf="carImgInput.errors?.['required']">
-                           <p>Car image is required!</p>                       
-                        </div>
-                    </ng-container>
-
-                    <input ngModel required minlength="4" #carBrandInput="ngModel"
-                    type="text" 
-                    class="form-control-2" 
-                    id="carBrand" 
-                    placeholder="Audi" 
-                    name="carBrand" >
-
-                    <ng-container *ngIf="carBrandInput.touched">
-                        <div class="error" *ngIf="carBrandInput.errors?.['required']">
-                           <p>Car brand field is required!</p>                       
-                        </div>
-                        <div class="error" *ngIf="carBrandInput.errors?.['minlength']">
-                            <p>Car brand field must be at least 4 characters</p>                       
-                         </div>
-                    </ng-container>
-
-                </div>
-                <div class="offer-label">
-                    <label for="seats">Available Seats</label>
-                    <label for="price">Price</label>
-                </div>
-                <div class="form-group offer-input">
-
-                    <input ngModel required [min]="1" [max]="4" #seatsInput="ngModel"
-                    type="number" 
-                    class="form-control-2" 
-                    id="seats" 
-                    placeholder="4" 
-                    name="seats">
-
-                    <ng-container *ngIf="seatsInput.touched">
-                        <div class="error" *ngIf="seatsInput.errors?.['required']">
-                           <p>Seats field is required!</p>                       
-                        </div>
-                        <div class="error" *ngIf="seatsInput.errors?.['min']">
-                            <p>Seats field must be at least 1</p>                       
-                         </div>
-                         <div class="error" *ngIf="seatsInput.errors?.['max']">
-                            <p>Seats field must be less then 5</p>                       
-                         </div>
-                    </ng-container>
-
-                    <input ngModel required [min]="1" [max]="50" #priceInput="ngModel" min="1" max="50"
-                    type="number" 
-                    class="form-control-2" 
-                    id="price" 
-                    placeholder="25" 
-                    name="price">
-
-                    <ng-container *ngIf="priceInput.touched">
-                        <div class="error" *ngIf="priceInput.errors?.['required']">
-                           <p>Price field is required!</p>                       
-                        </div>
-                        <div class="error" *ngIf="priceInput.errors?.['min']">
-                            <p>Price field must be at least 1</p>                       
-                         </div>
-                         <div class="error" *ngIf="priceInput.errors?.['max']">
-                            <p>Price field must be less then 50</p>                       
-                         </div>
-                    </ng-container>
-
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-
-                    <textarea ngModel required minlength="10" #descriptionInput="ngModel"
-                    class="form-control" 
-                    id="description" 
-                    placeholder="Information about the trip"
-                    name="description"></textarea>
-
-                    <ng-container *ngIf="descriptionInput.touched">
-                        <div class="error" *ngIf="descriptionInput.errors?.['required']">
-                           <p>Description field is required!</p>                       
-                        </div>
-                        <div class="error" *ngIf="descriptionInput.errors?.['minlength']">
-                            <p>Description field must be at least 10 characters long!</p>                       
-                         </div>
-                    </ng-container>
-                    
-                </div>
-                <button class="btn btn-primary" [disabled]="form.invalid">Submit</button>
-            </form>
         </div>
     </div>
 </section>

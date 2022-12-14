@@ -8,6 +8,12 @@
     </header>
     <div  class="row text-center">
 
+        <ng-container *ngIf="errorFetchingData">
+            <div class="error">
+                <p>Fetch is falied</p>                       
+             </div>
+        </ng-container>
+
         <div *ngFor="let trip of tripList! | paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength }" 
               class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">

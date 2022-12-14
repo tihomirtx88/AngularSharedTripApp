@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ITrip } from 'src/app/interfaces/trip';
 import { IUser } from 'src/app/interfaces/user';
@@ -83,7 +84,13 @@ export class TripDetailsComponent implements OnInit {
       this.haveCurrrentUser = true;
     }
   
-    this.tripService.getTrip(tripId!).subscribe({
+    this.tripService.getTrip(tripId!)
+    .pipe(
+      catchError((err) => {
+        return throwError(() => new Error(err.message));
+      }),
+    )
+    .subscribe({
         next: (value) => {
            
            this.currentTrip = value; 
@@ -106,20 +113,27 @@ export class TripDetailsComponent implements OnInit {
         },
         error: (err) => {
           this.errorFetchingData = true;
-        }
+          console.log(err); 
+        },
     });
   }
 
   loadBudies(){
     const tripId = this.activatedRoute.snapshot.paramMap.get("tripId");
-    this.tripService.getBudies(tripId!).subscribe({
+    this.tripService.getBudies(tripId!)
+    .pipe(
+      catchError((err) => {
+        return throwError(() => new Error(err.message));
+      }),
+    )
+    .subscribe({
       next: (value) => {
-         this.currentTripBudies = value;
-            
+         this.currentTripBudies = value;            
       },
       error: (err) => {
         this.errorFetchingData = true;
-      }
+        console.log(err); 
+      },   
     })
   }
 
@@ -127,10 +141,20 @@ export class TripDetailsComponent implements OnInit {
     const tripId = this.activatedRoute.snapshot.paramMap.get("tripId");
     this.userId = this.authService.user?._id;
     
-    this.tripService.joinToTrip(tripId!, this.userId!).subscribe({
+    this.tripService.joinToTrip(tripId!, this.userId!)
+    .pipe(
+      catchError((err) => {
+        return throwError(() => new Error(err.message));
+      }),
+    )
+    .subscribe({
       next: (value) => {
          this.isAllReadyJoinInTrip = true;     
-      }
+      },
+      error: (err) => {
+        this.errorFetchingData = true;
+        console.log(err);
+      },  
     });
   }
 

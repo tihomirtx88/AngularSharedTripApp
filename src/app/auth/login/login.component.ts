@@ -2,6 +2,7 @@ import { trigger } from '@angular/animations';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -24,6 +25,11 @@ export class LoginComponent implements OnInit {
     if(form.invalid){return;}
     const { email, password } = form.value;
     this.authService.login(email!, password!)
+    .pipe(
+      catchError((err) => {
+        return throwError(() => new Error(err.message));
+      }),
+    )
     .subscribe(user => {   
       this.authService.user = user;
        localStorage.setItem("accessToken", user.accessToken);

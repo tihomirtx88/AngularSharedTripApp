@@ -11,7 +11,7 @@ export class TripsService {
   constructor(private http: HttpClient) { }
 
   getAllTrips(){
-    let url = 'http://localhost:3030/data/trips?limit=6';
+    let url = 'http://localhost:3030/data/trips';
      return this.http.get<ITrip[]>(url);
   }
 
