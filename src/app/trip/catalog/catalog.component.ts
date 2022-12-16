@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, finalize, of, throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { ITrip } from 'src/app/interfaces/trip';
 import { TripsService } from '../trips.service';
 
@@ -10,7 +10,8 @@ import { TripsService } from '../trips.service';
   styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent implements OnInit {
-  tripList: ITrip[] | null = null;
+
+  trips!: ITrip[] | [];
   errorFetchingData = false;
   totalLength!: number;
   page: number = 1;
@@ -26,9 +27,11 @@ export class CatalogComponent implements OnInit {
         }),
       )
       .subscribe({
-        next: (value) => {         
-          this.tripList = value;
-          this.totalLength = value.length;
+        next: (trips) => {         
+          this.trips = trips;
+          this.totalLength = trips.length;
+          console.log(trips);
+          
         },
         error: (err) => {
           this.errorFetchingData = true;

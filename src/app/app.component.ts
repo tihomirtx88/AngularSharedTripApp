@@ -14,7 +14,9 @@ export class AppComponent {
 
   constructor(private router: Router, private pageTitle: Title, private authService: AuthService){
     if (localStorage.getItem('user')) {
-      // i must check is it user token valid or not 
+      if (!this.authService.user?.accessToken) {
+        return;
+      }
       this.authService.setUser(JSON.parse(localStorage.getItem("user") || ''));
     }
     

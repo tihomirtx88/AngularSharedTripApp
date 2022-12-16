@@ -13,8 +13,7 @@ export class AppInterceptor implements HttpInterceptor{
             req = req.clone({ url: req.url.replace('/users', apiUrl)})
         }
         return next.handle(req);
-    }
-    
+    }    
 }
 
 export const appInterceptorProvider: Provider = {

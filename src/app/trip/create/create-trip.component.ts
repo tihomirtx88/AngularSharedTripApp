@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ITrip } from 'src/app/interfaces/trip';
 import { TripsService } from '../trips.service';
 
 @Component({
@@ -13,6 +14,7 @@ import { TripsService } from '../trips.service';
 export class CreateTripComponent  {
 
   errorFetchingData = false;
+  currentTrip: ITrip | null = null;
 
   constructor(private router: Router, private tripsService: TripsService,private authService: AuthService) { }
 
@@ -28,7 +30,8 @@ export class CreateTripComponent  {
       }),
     )
     .subscribe({
-      next: (value) => {
+      next: (trip) => {
+        this.currentTrip = trip;
         this.router.navigate(['/trips/catalog']);
       },
       error: (err) => {
