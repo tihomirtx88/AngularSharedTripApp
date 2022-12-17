@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  APIURL: 'https://shared-trips-server.onrender.com/users'
 };
+

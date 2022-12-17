@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIURL: 'http://localhost:3030/users'
+  APIURL: 'https://shared-trips-server.onrender.com/users'
 };
 
 /*

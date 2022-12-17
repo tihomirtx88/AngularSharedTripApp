@@ -40,7 +40,8 @@ export class ProfileComponent implements OnInit {
     .subscribe({
       next: (value) => {
         this.profileTrips = value;
-        if (this.profileTrips?.length == 0) {
+        
+        if (this.profileTrips?.length! == 0) {
            this.thereIsNotAnyTrips = true;
         }
       },

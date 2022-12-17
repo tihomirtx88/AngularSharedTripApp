@@ -50,7 +50,7 @@ export class AuthService implements OnDestroy{
   getProfile() {
     const token = localStorage.getItem("accessToken")
     const stringToken = token ? token : ""
-    return this.http.get<IUser>('http://localhost:3030/data/trips/profile', {
+    return this.http.get<IUser>('https://shared-trips-server.onrender.com/data/trips/profile', {
       headers: {
         'Content-Type': 'application/json',
         'X-Authorization': stringToken
