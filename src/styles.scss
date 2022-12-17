@@ -12,11 +12,27 @@ body {
 app-root{
   height: 100%;
   display: block;
+  position: relative;
 }
 
-app-root >router-outlet + *{
+app-search{
+  position: absolute;
+  width: 80%;
+  top: 87px;
+  left: 117px;
+}
+
+app-root > router-outlet + *{
   min-height: calc(100% - 64px);
   display: block;
+}
+
+.lead-search{
+  color: white;
+  width: 10%;
+  text-align: center;
+  font-size: 23px;
+  font-style: italic;
 }
 
 .pagination ul li a{

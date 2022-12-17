@@ -4,16 +4,26 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
+  {
+    path: 'search',
+    component: SearchComponent,
+    canActivate: [AuthActivate],
+    data: {
+        title: 'Search page',
+        loginRequired: false,
+      },
+  },
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [AuthActivate],
     data: {
-      title: 'Login Page',
-      loginRequired: false,
-    },
+        title: 'Login',
+        loginRequired: false,
+      },
   },
   {
     path: 'logout',

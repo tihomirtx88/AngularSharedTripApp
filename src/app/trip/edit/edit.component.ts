@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ITrip } from 'src/app/interfaces/trip';
 import { TripsService } from '../trips.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
@@ -41,8 +40,8 @@ export class EditComponent implements OnInit {
     )
     .subscribe( (value: any) => {  
         this.editForm = this.formBuild.group({
-          start: [value.start],
-          end: new FormControl(value['end']),
+          start:new FormControl (value['start'], Validators.required),
+          end: new FormControl(value['end'], Validators.required),
           date: new FormControl(value['date']),
           time: new FormControl(value['time']),
           carImg: new FormControl(value['carImg']),

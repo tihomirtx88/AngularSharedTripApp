@@ -4,6 +4,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { CreateTripComponent } from './create/create-trip.component';
 import { TripDetailsComponent } from './details/trip-details.component';
 import { EditComponent } from './edit/edit.component';
+import { SearchComponent } from '../auth/search/search.component';
 
 
 const routes: Routes = [

@@ -4,17 +4,19 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { mockTrip } from 'src/app/MOCK_TRIP';
+import { mockUser } from 'src/app/MOCK_USER';
 import { TripsService } from '../trips.service';
 
 import { TripDetailsComponent } from './trip-details.component';
 
-describe('TripDetailsComponent', () => {
+fdescribe('TripDetailsComponent', () => {
   let component: TripDetailsComponent;
   let fixture: ComponentFixture<TripDetailsComponent>;
 
   beforeEach(async () => {
-    const tripServiceSpy = jasmine.createSpyObj<TripsService>(['getTrip']);
+    const tripServiceSpy = jasmine.createSpyObj<TripsService>(['getTrip', 'getBudies']);
     tripServiceSpy.getTrip.and.returnValue(of(mockTrip));
+    tripServiceSpy.getBudies.and.returnValue(of([mockUser]))
     
     await TestBed.configureTestingModule({
       declarations: [ TripDetailsComponent ],
@@ -33,7 +35,7 @@ describe('TripDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have trip', () => {
-    expect(component.currentTrip?.date).toBe("18.02.1988");
+  it('should have any budies', () => {
+    expect(component.currentTrip?.buddies.length).toBe(1);
   });
 });

@@ -128,7 +128,9 @@ export class TripDetailsComponent implements OnInit {
     )
     .subscribe({
       next: (value) => {
-         this.currentTripBudies = value;            
+         this.currentTripBudies = value; 
+         console.log(value,` from load budies`);
+                    
       },
       error: (err) => {
         this.errorFetchingData = true;

@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
+import { SearchComponent } from '../auth/search/search.component';
 
 
 
@@ -14,7 +15,7 @@ import { HomeComponent } from './home/home.component';
     PageNotFoundComponent,
     FooterComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +26,7 @@ import { HomeComponent } from './home/home.component';
     PageNotFoundComponent,
     FooterComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
   ]
 })
 export class CoreModule { }

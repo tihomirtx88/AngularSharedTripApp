@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
-import { CreateTripComponent } from './trip/create/create-trip.component';
 import { HomeComponent } from './core/home/home.component';
 
 const routes: Routes = [

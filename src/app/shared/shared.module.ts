@@ -3,19 +3,23 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LoaderComponent } from './loader/loader.component';
 import { ShortedPipe } from './shorted.pipe';
+import { FilterPipePipe } from './filter-pipe.pipe';
+import { TripModule } from '../trip/trip.module';
 
 @NgModule({
   declarations: [
     LoaderComponent,
-    ShortedPipe
+    ShortedPipe,
+    FilterPipePipe
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     LoaderComponent,
-    ShortedPipe
+    ShortedPipe,
+    FilterPipePipe
   ]
 })
 export class SharedModule { }

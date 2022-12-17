@@ -1,0 +1,53 @@
+<section class="div-container-search" id="shared-trips-page">
+  <p class="lead-search">
+    "Here you can find existing trips and join to your friends"
+  </p>
+    <!-- <h2 class="lead-h2">
+      <span class="search-criteria-span">Trips</span>
+    </h2> -->
+     <div class="search-input-container">
+      <input [(ngModel)]="searchTerm" (keyup)="search($event)"
+        type="text"
+        placeholder="Please, select the search criteria"
+        name="search"
+      />
+    </div> 
+
+    <!-- <div class="filter">
+      <span>Search Criteria:</span>
+      <select 
+        id="criteria"
+        name="criteria"
+        class="criteria"
+      >
+        <option value="all">Not selected</option>
+        <option value="start">Start Point</option>
+        <option value="end">End Point</option>
+      </select>
+    </div> -->
+
+  <div class="search-result">
+    <ng-container *ngFor="let trip of trips!
+     | filterPipe:searchKey:'start'
+     | paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength }" >
+      <div class="card h-100 trip-content">
+        <img class="card-img-top"
+            src={{trip.carImg}}
+            alt="">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-route"></i> <span>{{trip.start}}</span> -
+                <span>{{trip.end}}</span></h5>
+            <h5 class="mt-4 card-info"><i class="far fa-calendar-alt"></i> Date: <span>{{trip.date}}</span>
+            </h5>
+            <h5 class="mt-4 card-info"><i class="far fa-clock"></i> Time: <span>{{trip.time}}</span></h5>
+            <h5 class="mt-4"><i class="fas fa-hand-holding-usd"></i> Price: <span>{{trip.price}}</span> BGN</h5>
+        </div>
+        <div class="card-footer">
+            <a routerLink="/trips/details/{{ trip._id }}" class="btn btn-primary">Details</a>
+        </div>
+    </div>
+    </ng-container>
+  </div>
+
+  <pagination-controls class="pagination my-pagination" (pageChange)="page = $event"></pagination-controls>
+</section>

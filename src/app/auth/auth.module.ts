@@ -7,6 +7,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { SearchComponent } from './search/search.component';
+import { TripModule } from '../trip/trip.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -16,15 +19,17 @@ import { SharedModule } from '../shared/shared.module';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
-    
+    SharedModule, 
+    TripModule,
+    NgxPaginationModule,
   ]
 })
 export class AuthModule { }

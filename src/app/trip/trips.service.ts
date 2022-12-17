@@ -11,22 +11,22 @@ export class TripsService {
   constructor(private http: HttpClient) { }
 
   getAllTrips(){
-    let url = 'http://localhost:3030/data/trips';
+    let url = 'https://shared-trips-server.onrender.com/data/trips';
      return this.http.get<ITrip[]>(url);
   }
 
   getTrip(tripId: string){
-    return this.http.get<ITrip>(`http://localhost:3030/data/trips/${tripId}`);
+    return this.http.get<ITrip>(`https://shared-trips-server.onrender.com/data/trips/${tripId}`);
   }
 
   getBudies(tripId: string){
-    return this.http.get<IUser[]>(`http://localhost:3030/data/trips/buddies/${tripId}`)
+    return this.http.get<IUser[]>(`https://shared-trips-server.onrender.com/data/trips/buddies/${tripId}`)
  }
 
   createTrip(start: string, end: string, date: string, time: string, carImg: string, carBrand: string, price: number, seats: number, description: string){
     const token = localStorage.getItem("accessToken")
     const stringToken = token ? token : ""
-    return this.http.post<ITrip>('http://localhost:3030/data/trips', {start: start, end: end, date: date, time: time, carImg: carImg, carBrand: carBrand, price: price, seats: seats, description: description}, {
+    return this.http.post<ITrip>('https://shared-trips-server.onrender.com/data/trips', {start: start, end: end, date: date, time: time, carImg: carImg, carBrand: carBrand, price: price, seats: seats, description: description}, {
       headers: {
         'Content-Type': 'application/json',
         'X-Authorization': stringToken
@@ -37,7 +37,7 @@ export class TripsService {
   update(tripId: string, start: string, end: string, date: string, time: string, carImg: string, carBrand: string, price: number, seats: number, description: string){
     const token = localStorage.getItem("accessToken")
     const stringToken = token ? token : ""
-    return this.http.put<ITrip>(`http://localhost:3030/data/trips/${tripId}`, {start: start, end: end, date: date, time: time, carImg: carImg, carBrand: carBrand, price: price, seats: seats, description: description}, {
+    return this.http.put<ITrip>(`https://shared-trips-server.onrender.com/data/trips/${tripId}`, {start: start, end: end, date: date, time: time, carImg: carImg, carBrand: carBrand, price: price, seats: seats, description: description}, {
       headers: {
         'Content-Type': 'application/json',
         'X-Authorization': stringToken
@@ -48,7 +48,7 @@ export class TripsService {
   joinToTrip(tripId: string, userId: string){
     const token = localStorage.getItem("accessToken")
     const stringToken = token ? token : ""
-    return this.http.post<ITrip>(`http://localhost:3030/data/join/${tripId}`, {tripId, userId} , {
+    return this.http.post<ITrip>(`https://shared-trips-server.onrender.com/data/join/${tripId}`, {tripId, userId} , {
        headers: {
          'Content-Type': 'application/json',
          'X-Authorization': stringToken
@@ -59,7 +59,7 @@ export class TripsService {
   deleteTrip(tripId: string){
     const token = localStorage.getItem("accessToken")
     const stringToken = token ? token : ""
-    return this.http.delete<ITrip>(`http://localhost:3030/data/trips/${tripId}`, {
+    return this.http.delete<ITrip>(`https://shared-trips-server.onrender.com/data/trips/${tripId}`, {
        headers: {
         'Content-Type': 'application/json',
         'X-Authorization': stringToken

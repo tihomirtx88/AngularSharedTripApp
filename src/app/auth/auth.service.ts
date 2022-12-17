@@ -21,6 +21,9 @@ export class AuthService implements OnDestroy{
 
   subscription: Subscription;
 
+  //search
+  public search$$ = new BehaviorSubject<string>('');
+
   constructor(private http: HttpClient) {
     this.subscription = this.user$.subscribe(user => {
       if (user) {

@@ -10,6 +10,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from "ngx-pagination";
+import { SearchComponent } from '../auth/search/search.component';
+import { AuthModule } from '../auth/auth.module';
 
 
 

@@ -14,8 +14,8 @@
              </div>
         </ng-container>
 
-        <!-- | paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength } -->
-        <div *ngFor="let trip of trips! " 
+        <!--  -->
+        <div *ngFor="let trip of trips! | paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength } " 
               class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
                 <img class="card-img-top"
@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <!-- <pagination-controls class="pagination my-pagination" (pageChange)="page = $event"></pagination-controls> -->
+        <pagination-controls class="pagination my-pagination" (pageChange)="page = $event"></pagination-controls>
       
         <div *ngIf="!trips" class="no-trips">
             <img src="https://www.stagweb.co.uk/img/activities/big/sexyhitchhiker1.jpg" />

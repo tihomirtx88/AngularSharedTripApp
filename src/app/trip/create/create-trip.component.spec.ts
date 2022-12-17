@@ -9,7 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-fdescribe('CreateTripComponent', () => {
+describe('CreateTripComponent', () => {
   let component: CreateTripComponent;
   let fixture: ComponentFixture<CreateTripComponent>;
 
@@ -42,6 +42,8 @@ fdescribe('CreateTripComponent', () => {
   });
 
   it(' trip should have same price', () => {
-    expect(component.currentTrip?.price!).toEqual(20);
+    expect(component.currentTrip?.price).toEqual(20)
+    console.log(component.currentTrip);
+    
   });
 });

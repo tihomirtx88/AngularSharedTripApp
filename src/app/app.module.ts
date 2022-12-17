@@ -8,6 +8,7 @@ import { appInterceptorProvider } from './app.interceptor';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     CoreModule,
     HttpClientModule,
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [appInterceptorProvider],
   bootstrap: [AppComponent]
