@@ -20,6 +20,12 @@
             </div>
         </ng-container>
 
+        <ng-container *ngIf="form.get('email')?.touched">
+          <div class="error" *ngIf="form.get('email')?.errors?.['pattern']">
+             <p>Email must be valid!</p>                       
+          </div>
+      </ng-container>
+
         <ng-container formGroupName="pass">
           <div class="form-group">
             <label for="password">Password</label>
@@ -76,7 +82,7 @@
         <div class="form-group">
           <p>Already have account? <a routerLink="/login">Login Now!</a></p>
         </div>
-        <button class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+        <button class="btn btn-primary" id="button" [disabled]="form.invalid">Submit</button>
       </form>
     </div>
   </div>

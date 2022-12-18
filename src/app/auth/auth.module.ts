@@ -11,9 +11,6 @@ import { SearchComponent } from './search/search.component';
 import { TripModule } from '../trip/trip.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
-
-
 @NgModule({
   declarations: [
     LoginComponent,

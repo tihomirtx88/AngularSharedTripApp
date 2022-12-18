@@ -7,7 +7,6 @@
                     <label for="email">Email address</label>
                     <input ngModel #emailInput="ngModel" required email type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                 </div>
-                <!-- {{emailInput.errors | json}} -->
 
                 <ng-container *ngIf="emailInput.touched">
                     <div class="error" *ngIf="emailInput.errors?.['required']">

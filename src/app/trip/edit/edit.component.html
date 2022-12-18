@@ -12,7 +12,9 @@
                     type="text" 
                     class="form-control-2" 
                     id="startPoint" 
-                    formControlName="start">  
+                    aria-required="true"
+                    formControlName="start"
+                    appErrorMessage="start-error">  
                     
                     <ng-container *ngIf="editForm.get('start')?.touched">
                         <div class="error" *ngIf="editForm.get('start')?.errors?.['required']">

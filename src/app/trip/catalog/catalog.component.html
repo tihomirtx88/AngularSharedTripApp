@@ -22,8 +22,8 @@
                     src={{trip.carImg}}
                     alt="">
                 <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-route"></i> <span>{{trip.start}}</span> -
-                        <span>{{trip.end}}</span></h5>
+                    <h5 class="card-title"><i class="fas fa-route"></i> <span>{{trip.start | shorted: 10}}</span> -
+                        <span>{{trip.end | shorted: 10}}</span></h5>
                     <h5 class="mt-4 card-info"><i class="far fa-calendar-alt"></i> Date: <span>{{trip.date}}</span>
                     </h5>
                     <h5 class="mt-4 card-info"><i class="far fa-clock"></i> Time: <span>{{trip.time}}</span></h5>

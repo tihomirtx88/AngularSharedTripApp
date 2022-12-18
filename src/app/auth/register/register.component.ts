@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
@@ -10,12 +10,12 @@ import { AuthService } from '../auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
   errorFetchingData = false;
 
   form = this.formBuild.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.pattern("[^@]*@[^@]*")]],
     pass: this.formBuild.group({
       password: ['', [Validators.required, Validators.minLength(6)]],
       rePassword: []
@@ -26,6 +26,10 @@ export class RegisterComponent {
   });
 
   constructor(private formBuild: FormBuilder, private authService: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+    
+  }
 
   registerHandler(){
      if(this.form.invalid){return;}
